@@ -1,0 +1,284 @@
+\documentclass[a4 paper]{article}
+\usepackage[inner=2.0cm,outer=2.0cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage[ruled]{algorithm2e}
+\usepackage[rgb]{xcolor}
+\usepackage{verbatim}
+\usepackage{subcaption}
+\usepackage{amsgen,amsmath,amstext,amsbsy,amsopn,tikz,amssymb}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true, urlcolor=blue,  linkcolor=blue, citecolor=blue]{hyperref}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{rotating}
+\usepackage{booktabs}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{section}
+
+\newcommand{\homework}[6]{
+  \pagestyle{myheadings}
+  \thispagestyle{plain}
+  \newpage
+  \setcounter{page}{1}
+  \noindent
+  \begin{center}
+    \framebox{
+      \vbox{\vspace{2mm}
+        \hbox to 6.28in { {\bf MATH 118:~Statistics and Probability \hfill {\small (#2)}} }
+        \vspace{6mm}
+        \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+        \vspace{6mm}
+        \hbox to 6.28in { {\it Instructor: {\rm #3} \hfill Name: {\rm #5} \hfill Student Id: {\rm #6}} \hfill}
+        \hbox to 6.28in { {\it Assistant: #4  \hfill #6}}
+        \vspace{2mm}}
+    }
+  \end{center}
+  \markboth{#5 -- #1}{#5 -- #1}
+  \vspace*{4mm}
+}
+
+\newcommand{\problem}[2]{~\\\fbox{\textbf{Problem #1}}\hfill (#2 points)\newline\newline}
+\newcommand{\subproblem}[1]{~\newline\textbf{(#1)}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\Hy}{\mathcal{H}}
+\newcommand{\VS}{\textrm{VS}}
+\newcommand{\solution}{~\newline\textbf{\textit{(Solution)}} }
+
+\newcommand{\bbF}{\mathbb{F}}
+\newcommand{\bbX}{\mathbb{X}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bY}{\mathbf{Y}}
+\newcommand{\bepsilon}{\boldsymbol{\epsilon}}
+\newcommand{\balpha}{\boldsymbol{\alpha}}
+\newcommand{\bbeta}{\boldsymbol{\beta}}
+\newcommand{\0}{\mathbf{0}}
+
+
+\begin{document}
+  \homework{Homework \#2}{Due: 07/06/21}{Dr. Zafeirakis Zafeirakopoulos}{Gizem S\"ung\"u}{}{}
+  \textbf{Course Policy}: Read all the instructions below carefully before you start working on the assignment, and before you make a submission.
+  \begin{itemize}
+    \item It is not a group homework. Do not share your answers to anyone in any circumstance. Any cheating means at least -100 for both sides. 
+    \item Do not take any information from Internet.
+    \item No late homework will be accepted. 
+    \item For any questions about the homework, send an email to gizemsungu@gtu.edu.tr.
+    \item Submit your homework (both your latex and pdf files in a zip file) into the course page of Moodle.
+    \item Save your latex, pdf and zip files as "Name\_Surname\_StudentId".\{tex, pdf, zip\}.
+    \item The answer which has only calculations without any formula and any explanation will get zero. 
+    \item The deadline of the homework is 07/06/20 23:55.
+    \item I strongly suggest you to write your homework on \LaTeX. However, hand-written paper is still accepted \textbf{IFF} your hand writing is \textbf{clear and understandable to read}, and the paper is well-organized. Otherwise, I cannot grade your homework.
+    \item You do not need to write your Student Id on the page above. I am checking your ID from the file name.
+  \end{itemize}
+  
+  \problem{1:}{10+10+10+10+10+10+40 = 100}
+  \textbf{WARNING:} Please show your OWN work. Any cheating can be easily detected and will not be graded.
+  \newline
+  \newline
+  For the question, please follow the file called manufacturing\_defects.txt while reading the text below.\\
+  \newline
+  In each year from 2000 to 2019, the number of manufacturing defects in auto manufacturers were counted. The data was collected from 14 different auto manufactory companies. The numbers of defects for the companies are indicated in 14 columns following the year column. Assume that the number of manufacturing defects per auto company per year is a random variable having a Poisson($\lambda$) and that the number of defects in different companies or in different years are independent.\\
+  (Note: You should implement a code for your calculations for each following subproblem. You are free to use any programming languages (Python, R, C, C++, Java) and their related library.)
+
+\subproblem{a} Give a table how many cases occur for all companies between 2000 and 2019 for each number of defects (\# of Defects).\\
+  Hint: When you check the file you will see: \# of Defects = \{0, 1, 2, 3, 4\}.\\
+\newpage
+\begin{table}[htb!]
+	\centering
+	\begin{tabular}{c|c}
+		\begin{tabular}[c]{@{}c@{}}\textbackslash{}\# of\\Crashes\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbackslash{}\# of cases\\in all company \\between the years\end{tabular}  \\ 
+		\hline
+		0                                                                      &                          144                                                                                \\
+		1                                                                      &                             91                                                                             \\
+		2                                                                      &                              32                                                                            \\
+		3                                                          & 11 
+		\\ 
+		4                                                                      &                                                2                                                        
+	\end{tabular}
+
+\caption{Actual cases}
+\label{tab1}
+\end{table}
+
+\subproblem{b} Estimate $\lambda$ from the given data. \\
+
+$\lambda$ calculated with code and value is 0.7.
+
+\subproblem{c} Update Table \ref{tab1} in Table \ref{tab2} with Poisson predicted cases with the estimated $\lambda$.\\
+\begin{table}[htb!]
+	\centering
+	\begin{tabular}{c|c|c}
+		\begin{tabular}[c]{@{}c@{}}\textbackslash{}\# of\\Crashes\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbackslash{}\# of cases\\in all companies\\between the years\end{tabular} & \begin{tabular}[c]{@{}c@{}}Predicted \textbackslash{}\# of cases\\in all companies\\between the years\end{tabular}  \\ 
+		\hline
+		0                                                                      &                                                                                                 144         &                    139.04388506159466                                                                                                 \\
+		1                                                                      &                                                                                                      91    &                     97.33071954311626                                                                                                \\
+		2                                                                      &                                                                                                       32   &                     34.065751840090684                                                                                               \\
+		3                                                                      &                                                                                                      11    &    7.948675429354493    
+		\\
+		4                                                                      &                                                                                                      2    &             1.3910182001370366                                                                                                     
+	\end{tabular}
+\caption{Actual vs. Predicted Cases}
+\label{tab2}
+\end{table}
+\subproblem{d} Draw a barplot for the actual cases (Table \ref{tab2} in column 2) and the predicted cases (Table \ref{tab2} column 3) with respect to \# of crashes. You should put the figure.\\
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.6]{plot.png}
+    \caption{Actual vs. Predicted Cases}
+    \label{fig:barplot}
+\end{figure}
+
+\subproblem{e} According to the barplot in (c), does the poisson distribution fit the data well? Compare the values of the actual cases and the values of the poisson predicted cases, and write your opinions about performance of the distribution.\\
+
+Differences :[ 4.95611494, -6.33071954, -2.06575184,  3.05132457,  0.6089818 ] They are close, so I can say the distribution good for the data.
+
+\subproblem{f} According to your estimations above, write your opinions considering your barplot and Table 2. Do you
+think that road transportation is dangerous for us? Whether yes or no, explain your reason.
+
+I think, road transportation not dangereous that much as we see poisson distribution so less.this says road transportation not dangereous that much
+
+
+\subproblem{g} Paste your code that you implemented for the subproblems above. Do not forget to write comments on your code.\\
+Example:\\
+\begin{itemize}
+	\item The common code block for all subproblems\\
+	\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{csharp}
+               
+    import math
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    CRASH = 5
+
+    def input():
+      file = open("manufacturing_defects.txt", "r")
+      X = []
+      for line in file:
+        stripped_line = line.strip()
+        line_list = stripped_line.split()
+        X.append(line_list)
+      file.close()
+      return X
+    def num_of_case(X, crash_num):
+      count = 0
+      for line in X:
+        count += line[1:].count(str(crash_num))
+      return count
+        
+    X = input()
+
+    companies = len(X[0]) - 2
+    years = len(X)-1#-1 up to file
+
+    table = print_table(X)
+
+    #C
+    print(table)
+
+    # find lambda
+    mean = find_lambda(X, companies, years)
+    print(mean)
+
+    # find estimations
+    estimated_table = estimate([i for i in range(len(table))], mean, companies, years)
+    print(estimated_table)
+
+    # plot
+    barplot(table, estimated_table)
+
+    # difference
+    print(np.array(table) - np.array(estimated_table))
+  
+\end{minted}
+	\item The code block for (a)\\
+	\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{csharp}
+               
+    def print_table(X):
+      table_a = []
+      for i in range(CRASH):
+        table_a.append(num_of_case(X, i))
+      print("{}\t{}".format(i, table_a[i]))
+      return table_a
+  
+\end{minted}
+	
+	
+	\item The code block for (b)\\
+	\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{csharp}
+               
+    def find_lambda(X, cc, yc):
+      cases = 0
+      for i in range(CRASH):
+            cases += i * num_of_case(X, i)
+      return cases / (cc * yc)
+  
+\end{minted}
+	\item The code block for (c)\\
+	\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{csharp}
+               
+    def pdf(X, mean):
+      return (math.exp(-mean) * (mean**X) / math.factorial(X))
+
+    def estimate(Xe, mean, cc, yc):
+      E = []
+      for x in Xe:
+        E.append(pdf(x, mean) * cc * yc)
+      return E
+  
+\end{minted}
+	\item The code block for (d)\\
+	\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               gobble=2,
+               frame=lines,
+               framesep=2mm]{csharp}
+               
+    def barplot(R, E):
+      w = 0.1
+      np_X = np.arange(CRASH)
+      real_plt = plt.bar(np_X, R, w, label="true")
+      est_plt = plt.bar(np_X + w, E, w, label="estimated")
+      for i in range(0, CRASH):
+        real_plt[i].set_color('g') 
+        est_plt[i].set_color('r')
+      plt.title("true compared estimated values")
+      plt.xlabel("# of crashes")
+      plt.ylabel("# of cases")
+      plt.xticks(np_X + w/2, [i for i in range(0, CRASH)])
+      plt.legend(loc="best")
+      plt.show()
+  
+\end{minted}
+\end{itemize}
+
+
+
+\end{document} 
